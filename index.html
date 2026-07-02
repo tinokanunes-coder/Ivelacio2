@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exclusive Shop</title>
+  <meta name="description" content="Premium digital content — buy directly via Telegram or Zangi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NOTIFICATIONS bottom-left -->
+  <div id="live-notifications"></div>
+
+  <!-- FREE FOLDER MODAL -->
+  <div class="modal-overlay" id="free-folder-modal">
+    <div class="modal-box">
+      <button class="modal-close-x" onclick="closeFreeModal()">✕</button>
+      <div id="free-modal-inner"></div>
+    </div>
+  </div>
+
+  <!-- PROOF MODAL -->
+  <div class="modal-overlay" id="proof-modal">
+    <div class="modal-box proof-modal-box">
+      <div class="modal-header-bar">
+        <span>🏆 Proof of Sales</span>
+        <button class="modal-close-btn" onclick="closeProof()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="proof-img-wrap">
+          <button class="proof-nav" id="proof-prev" onclick="proofNav(-1)" style="display:none">‹</button>
+          <img id="proof-img" src="index.html" alt="Proof of sales" onclick="openProofFullscreen()" title="Click to zoom" />
+          <button class="proof-nav" id="proof-next" onclick="proofNav(1)" style="display:none">›</button>
+        </div>
+        <div id="proof-counter" class="proof-counter" style="display:none"></div>
+        <p class="modal-caption" id="proof-caption"></p>
+        <button class="btn-zoom" onclick="openProofFullscreen()">🔍 Zoom / Fullscreen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROOF FULLSCREEN OVERLAY -->
+  <div class="proof-fullscreen" id="proof-fullscreen">
+    <button class="proof-fs-close" onclick="closeProofFullscreen()">✕</button>
+    <img id="proof-fs-img" src="index.html" alt="Proof fullscreen" />
+  </div>
+
+  <!-- ═══════ HEADER ═══════ -->
+  <header class="site-header">
+    <div class="header-particles" id="headerParticles"></div>
+    <div class="header-glow"></div>
+
+    <!-- OFFICIAL NOTICE BANNER -->
+    <div class="official-notice">
+      <span class="notice-shield">🛡️</span>
+      <span class="notice-text" data-i18n="official_notice">🔒 OFFICIAL &amp; UNIQUE PAGE — YOUR PRIVACY IS FULLY PROTECTED</span>
+      <span class="notice-shield">🛡️</span>
+    </div>
+
+    <div class="header-inner">
+      <div class="header-logo">
+        <div class="logo-badge">
+          <span class="logo-icon">⚡</span>
+          <span class="logo-text">EXCLUSIVE<span>SHOP</span></span>
+        </div>
+        <div class="live-indicator">
+          <span class="live-dot"></span>
+          <span class="live-label" id="viewerCount">Loading...</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en" onclick="setLang('en')">🇬🇧 EN</button>
+          <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">🇵🇹 PT</button>
+        </div>
+
+        <div class="header-contacts">
+          <a href="index.html#" id="hdr-telegram-btn" target="_blank" rel="noopener" class="contact-btn telegram-color">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.932z"/></svg>
+            <span data-i18n="telegram">Telegram</span>
+          </a>
+          <a href="index.html#" id="hdr-zangi-btn" target="_blank" rel="noopener" class="contact-btn zangi-color">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            <span data-i18n="zangi">Zangi</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-marquee-wrap">
+      <div class="header-marquee">
+        <span>🔥 PREMIUM CONTENT &nbsp;•&nbsp; </span>
+        <span>⚡ INSTANT ACCESS &nbsp;•&nbsp; </span>
+        <span>💎 VIP FOLDERS &nbsp;•&nbsp; </span>
+        <span>🎯 EXCLUSIVE PACKS &nbsp;•&nbsp; </span>
+        <span>🚀 BEST SELLERS &nbsp;•&nbsp; </span>
+        <span>🔥 PREMIUM CONTENT &nbsp;•&nbsp; </span>
+        <span>⚡ INSTANT ACCESS &nbsp;•&nbsp; </span>
+        <span>💎 VIP FOLDERS &nbsp;•&nbsp; </span>
+        <span>🎯 EXCLUSIVE PACKS &nbsp;•&nbsp; </span>
+        <span>🚀 BEST SELLERS &nbsp;•&nbsp; </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════ MAIN ═══════ -->
+  <main class="container">
+
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-content">
+        <span class="eyebrow-icon">🔥</span>
+        <span class="eyebrow-label" data-i18n="featured_label">FEATURED</span>
+      </div>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title">
+      <span data-i18n="featured_title">Featured Videos</span>
+      <span class="title-underline"></span>
+    </h2>
+
+    <div class="products-grid" id="products-container"></div>
+
+    <!-- OFFER CARDS -->
+    <div class="offer-section">
+      <div class="offer-section-label" data-i18n="more_options">More Options</div>
+      <div class="custom-offer">
+        <div class="offer-card">
+          <div class="offer-card-icon">📂</div>
+          <h3 data-i18n="custom_folder_title">Custom Folder Request</h3>
+          <p data-i18n="custom_folder_desc">Describe what you are looking for and your budget.</p>
+          <textarea id="custom-folder-text" rows="3"
+            data-placeholder-i18n="custom_folder_ph"
+            placeholder="Example: I need niche X, approx 5GB. Budget $20..."></textarea>
+          <button type="button" class="telegram-btn" onclick="sendCustomFolder()">
+            ✉️ <span data-i18n="send_request">Send Request</span>
+          </button>
+        </div>
+        <div class="offer-card">
+          <div class="offer-card-icon">💎</div>
+          <h3 data-i18n="vip_title">Join VIP Group</h3>
+          <p data-i18n="vip_desc">Enter the specific VIP group name you want to join.</p>
+          <input type="text" id="vip-group-text"
+            data-placeholder-i18n="vip_ph"
+            placeholder="Group Name..." />
+          <button type="button" class="telegram-btn" onclick="sendVipRequest()">
+            🚀 <span data-i18n="join_now">Join Now</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="site-footer">
+    <div class="footer-glow"></div>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">⚡ EXCLUSIVE<span>SHOP</span></div>
+        <p class="footer-tagline" data-i18n="footer_tagline">Premium digital content. Instant delivery.</p>
+        <div class="footer-social-btns">
+          <a id="footer-telegram" href="index.html#" target="_blank" rel="noopener" class="foot-social-btn tg-foot">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.932z"/></svg>
+          </a>
+          <a id="footer-zangi" href="index.html#" target="_blank" rel="noopener" class="foot-social-btn zangi-foot">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <div class="footer-col-title" data-i18n="contact">Contact</div>
+        <a id="footer-tg-link" href="index.html#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.932z"/></svg>
+          Telegram Support
+        </a>
+        <a href="index.html#" id="footer-zangi-link" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          Zangi Support
+        </a>
+      </div>
+
+      <div class="footer-links-col">
+        <div class="footer-col-title" data-i18n="quick_links">Quick Links</div>
+        <a href="index.html#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" data-i18n="back_top">↑ Back to Top</a>
+        <a href="index.html#products-container" data-i18n="products">Products</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Exclusive Shop · All rights reserved</span>
+      <div class="footer-badges">
+        <span class="foot-badge">🔒 Secure</span>
+        <span class="foot-badge">⚡ Instant</span>
+        <span class="foot-badge">💎 Premium</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+   <script src="dm-messages.js"></script>
+</body>
+</html>
